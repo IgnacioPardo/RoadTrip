@@ -1,0 +1,69 @@
+html, body {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+body {
+	/* Background image is centered vertically and horizontally at all times */
+	background-position: center center;
+	  
+	/* Background image doesn't tile */
+	background-repeat: no-repeat;
+
+	/* Background image is fixed in the viewport so that it doesn't move when 
+	 the content's height is greater than the image's height */
+	background-attachment: fixed;
+
+	/* This is what makes the background image rescale based
+	 on the container's size */
+	background-size: cover;
+
+	/* Set a background color that will be displayed
+	 while the background image is loading */
+	background-color: #464646;
+
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.logo{
+	height: 30%;
+	margin-top: 10%;
+}
+
+.menuIcon{
+	color: white;
+	filter: none !important;
+	margin: 2%;
+	margin-bottom: 6%;
+	height: 15%;
+}
+
+.run{
+	width: 22%;
+	margin: 20%;
+	margin-top: 35%;
+	margin-bottom: 35%;
+}
+
+.prediction{
+	width: 80%;
+	margin: 10%;
+}
+
+.window{
+	margin: auto;
+	margin-top: 15%;
+	width: 65%;
+	background-color: rgba(140, 140, 140, 0.7);
+}
+
+.blured{
+	//background-color: rgba(100, 100, 100, 0.7);
+}
+
+.menuBar{
+	position: fixed;
+    bottom: 0;
+	width: 100%;
+}
