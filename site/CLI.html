@@ -1,584 +1,561 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="twitter:card" content="summary" />
-	<meta property="og:url" content="https://roadtrip-server.herokuapp.com/" />
-	<meta property="og:title" content="RoadTrip" />
-	<meta property="og:description" content="Cars and Roads AI Detection" />
-	<meta property="og:image" content="static/thumbnail.jpg" />
-
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1">-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no" />
-	<meta name="HandheldFriendly" content="true">
-	<meta http-equiv="Cache-control" content="no-cache">
-	<meta http-equiv="Expires" content="-1">
-	<!-- for ios 7 style, multi-resolution icon of 152x152 -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-barstyle" content="black-translucent">
-	<link rel="apple-touch-icon" href="static/icon-152.png">
-	<!-- for Chrome on Android, multi-resolution icon of 196x196 -->
-	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="shortcut icon" sizes="196x196" href="static/icon-196.png">
-	<meta name="apple-mobile-web-app-title" content="RoadTrip">
-	<meta name="application-name" content="RoadTrip">
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<title>RoadTrip</title>
-<style id="applicationStylesheet" type="text/css">
-	body {
-		margin: 0;
-		padding: 0;
-	}
-	:root {
-		--web-view-ids: SelectFiles;
-	}
-	#SelectFiles * {
-		margin: 0;
-		padding: 0;
-	}
-	#SelectFiles {
-		position: absolute;
-		box-sizing: border-box;
-		background: #E5E5E5;
-		width: 1920px;
-		height: 1080px;
-		font-family: Futura;
-		background-color: rgba(255,255,255,1);
-		overflow: hidden;
-		margin: 0;
-		padding: 0;
-		opacity: 1;
-		--web-view-name: SelectFiles;
-		--web-view-id: SelectFiles;
-		--web-scale-to-fit: true;
-		--web-enable-deep-linking: true;
-	}
-	#Road {
-		opacity: 1;
-		filter: blur(30px);
-		fill: url(#Road_A0_Rectangle_2_pattern);
-	}
-	.Road {
-		position: absolute;
-		overflow: visible;
-		width: 1919px;
-		height: 1080px;
-		left: 0px;
-		top: 0px;
-	}
-	#Menu_Bar {
-		opacity: 0.4;
-		-webkit-filter: blur(50px);
-		-moz-filter: blur(50px);
-		-o-filter: blur(50px);
-		-ms-filter: blur(50px);
-		filter: blur(50px);
-		fill: rgba(237,237,237,1);
-	}
-	.Menu_Bar {
-		position: absolute;
-		overflow: visible;
-		width: 627px;
-		height: 1080px;
-		left: 0px;
-		top: 0px;
-	}
-	#Window {
-		opacity: 0.4;
-		-webkit-filter: blur(50px);
-		-moz-filter: blur(50px);
-		-o-filter: blur(50px);
-		-ms-filter: blur(50px);
-		filter: blur(50px);
-		fill: rgba(237,237,237,1);
-	}
-	.Window {
-		position: absolute;
-		overflow: visible;
-		width: 1032px;
-		height: 852px;
-		left: 757px;
-		top: 114px;
-	}
-	#RoadTrip_Logo {
-		opacity: 1;
-		position: absolute;
-		width: 513.238px;
-		height: 441.931px;
-		left: 50px;
-		top: 50px;
-		overflow: visible;
-	}
-	#Satelogic_Logo {
-		opacity: 1;
-		position: absolute;
-		width: 212.821px;
-		height: 32.556px;
-		left: 300.417px;
-		top: 409.375px;
-		overflow: visible;
-	}
-	#Grupo_1 {
-		opacity: 1;
-		position: absolute;
-		width: 212.821px;
-		height: 32.556px;
-		left: 0px;
-		top: 0px;
-		overflow: visible;
-	}
-	#Grupo_3 {
-		opacity: 1;
-		position: absolute;
-		width: 255.475px;
-		height: 255.454px;
-		left: 88.061px;
-		top: 0px;
-		overflow: visible;
-	}
-	#Trazado_1 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_1 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 58.341px;
-		left: 58.362px;
-		width: 197.113px;
-		height: 197.113px;
-	}
-	#Trazado_2 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_2 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		width: 81.45px;
-		height: 81.428px;
-	}
-	#Grupo_5 {
-		opacity: 1;
-		position: absolute;
-		width: 246.226px;
-		height: 246.227px;
-		left: 93.613px;
-		top: 5.531px;
-		overflow: visible;
-	}
-	#Trazado_3 {
-		opacity: 1;
-		fill: rgba(34,32,32,1);
-	}
-	.Trazado_3 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 58.969px;
-		left: 58.969px;
-		width: 184.793px;
-		height: 184.794px;
-	}
-	#Trazado_4 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_4 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 72.909px;
-		left: 72.829px;
-		width: 157.075px;
-		height: 156.994px;
-	}
-	#Trazado_5 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_5 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 72.909px;
-		left: 72.829px;
-		width: 157.075px;
-		height: 156.994px;
-	}
-	#Trazado_6 {
-		opacity: 1;
-		fill: rgba(60,190,227,1);
-	}
-	.Trazado_6 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 56.505px;
-		left: 56.505px;
-		width: 189.721px;
-		height: 189.721px;
-	}
-	#Trazado_7 {
-		opacity: 1;
-		fill: rgba(60,190,227,1);
-	}
-	.Trazado_7 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 93.464px;
-		left: 93.464px;
-		width: 115.804px;
-		height: 115.804px;
-	}
-	#Grupo_4 {
-		opacity: 1;
-		position: absolute;
-		width: 68.978px;
-		height: 68.978px;
-		left: 0px;
-		top: 0px;
-		overflow: visible;
-	}
-	#Trazado_8 {
-		opacity: 1;
-		fill: rgba(0,167,213,1);
-	}
-	.Trazado_8 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 9.408px;
-		left: 0.628px;
-		width: 67.581px;
-		height: 58.801px;
-	}
-	#Trazado_9 {
-		opacity: 1;
-		fill: rgba(60,190,227,1);
-	}
-	.Trazado_9 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 0.628px;
-		left: 9.408px;
-		width: 58.801px;
-		height: 67.581px;
-	}
-	#Trazado_10 {
-		opacity: 1;
-		fill: url(#LinearGradientFill1);
-	}
-	.Trazado_10 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 0px;
-		left: 0px;
-		width: 68.978px;
-		height: 68.978px;
-	}
-	#Grupo_6 {
-		opacity: 1;
-		position: absolute;
-		width: 507.792px;
-		height: 128.616px;
-		left: 0px;
-		top: 275.782px;
-		overflow: visible;
-	}
-	#Trazado_11 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_11 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 6.274px;
-		left: 0px;
-		width: 63.654px;
-		height: 92.541px;
-	}
-	#Trazado_12 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_12 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 36.075px;
-		left: 74.501px;
-		width: 65.354px;
-		height: 64.308px;
-	}
-	#Trazado_13 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_13 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 36.075px;
-		left: 152.141px;
-		width: 53.59px;
-		height: 64.308px;
-	}
-	#Trazado_14 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_14 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 0px;
-		left: 219.978px;
-		width: 64.57px;
-		height: 100.383px;
-	}
-	#Trazado_15 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_15 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 6.274px;
-		left: 295.134px;
-		width: 72.151px;
-		height: 92.541px;
-	}
-	#Trazado_16 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_16 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 36.075px;
-		left: 365.847px;
-		width: 34.768px;
-		height: 62.74px;
-	}
-	#Trazado_17 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_17 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 6.274px;
-		left: 410.939px;
-		width: 14.9px;
-		height: 92.541px;
-	}
-	#Trazado_18 {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Trazado_18 {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 36.075px;
-		left: 443.222px;
-		width: 64.569px;
-		height: 92.542px;
-	}
-	#Car_Icon {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Car_Icon {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 583px;
-		left: 84px;
-		width: 195.201px;
-		height: 60px;
-	}
-	#Road_Icon {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-		stroke: rgba(0, 0, 0, 0);
-		stroke-width: 1px;
-		stroke-linejoin: miter;
-		stroke-linecap: butt;
-		stroke-miterlimit: 4;
-		shape-rendering: auto;
-	}
-	.Road_Icon {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 547.766px;
-		left: 365.594px;
-		width: 159.012px;
-		height: 113.923px;
-	}
-	#Images_Icon {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-		stroke: rgba(0, 0, 0, 0);
-		stroke-width: 1px;
-		stroke-linejoin: miter;
-		stroke-linecap: butt;
-		stroke-miterlimit: 4;
-		shape-rendering: auto;
-	}
-	.Images_Icon {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 762px;
-		left: 234px;
-		width: 191px;
-		height: 191px;
-	}
-	#Car_Detection_Text {
-		opacity: 1;
-		position: absolute;
-		left: 75px;
-		top: 680px;
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		overflow: visible;
-		width: 209px;
-		height: 45px;
-		line-height: 594px;
-		margin-top: -280.5px;
-		text-align: center;
-		font-family: Avenir, Futura;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 33px;
-		color: rgba(255,255,255,1);
-	}
-	#Upload_Images_Text {
-		opacity: 1;
-		position: absolute;
-		left: 220px;
-		top: 988px;
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		overflow: visible;
-		width: 225px;
-		white-space: nowrap;
-		line-height: 594px;
-		margin-top: -280.5px;
-		text-align: center;
-		font-family: Avenir, Futura;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 33px;
-		color: rgba(255,255,255,1);
-	}
-	#Road_Detection_Text {
-		opacity: 1;
-		position: absolute;
-		left: 332px;
-		top: 680px;
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		overflow: visible;
-		width: 233px;
-		white-space: nowrap;
-		line-height: 594px;
-		margin-top: -280.5px;
-		text-align: center;
-		font-family: Avenir, Futura;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 33px;
-		color: rgba(255,255,255,1);
-	}
-	#Add {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Add {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 809.236px;
-		left: 1278.224px;
-		width: 370.17px;
-		height: 95.528px;
-	}
-	#files {
-		opacity: 1;
-		position: absolute;
-		left: 837px;
-		top: 184px;
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		width: 746px;
-		height: 453px;
-		line-height: 43px;
-		margin-top: -5px;
-		text-align: left;
-		font-family: Avenir, Futura;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 33px;
-		color: rgba(255,255,255,1);
-	}
-	#Close {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Close {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 155.287px;
-		left: 1667.129px;
-		width: 80.56px;
-		height: 80.561px;
-	}
-	#Select_Files {
-		opacity: 1;
-		fill: rgba(255,255,255,1);
-	}
-	.Select_Files {
-		transform: matrix(1,0,0,1,0,0);
-		overflow: visible;
-		position: absolute;
-		top: 809.236px;
-		left: 897.606px;
-		width: 370.169px;
-		height: 95.528px;
-	}
-	textarea, .line-input {
-  	outline: none;
-		resize: none;
-		border: 0px;
-		background-color: transparent;
-		font-family: inherit;
-   	font-size: inherit;
-		color: inherit;
-		height: 37px;
-	}
-</style>
+REPLACE_HEADERS
+	<style id="applicationStylesheet" type="text/css">
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		:root {
+			--web-view-ids: SelectFiles;
+		}
+		#SelectFiles * {
+			margin: 0;
+			padding: 0;
+		}
+		#SelectFiles {
+			position: absolute;
+			box-sizing: border-box;
+			background: #E5E5E5;
+			width: 1920px;
+			height: 1080px;
+			font-family: Futura;
+			background-color: rgba(255,255,255,1);
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			opacity: 1;
+			--web-view-name: SelectFiles;
+			--web-view-id: SelectFiles;
+			--web-scale-to-fit: true;
+			--web-enable-deep-linking: true;
+		}
+		#Road {
+			opacity: 1;
+			filter: blur(30px);
+			fill: url(#Road_A0_Rectangle_2_pattern);
+		}
+		.Road {
+			position: absolute;
+			overflow: visible;
+			width: 1919px;
+			height: 1080px;
+			left: 0px;
+			top: 0px;
+		}
+		#Menu_Bar {
+			opacity: 0.4;
+			-webkit-filter: blur(50px);
+			-moz-filter: blur(50px);
+			-o-filter: blur(50px);
+			-ms-filter: blur(50px);
+			filter: blur(50px);
+			fill: rgba(237,237,237,1);
+		}
+		.Menu_Bar {
+			position: absolute;
+			overflow: visible;
+			width: 627px;
+			height: 1080px;
+			left: 0px;
+			top: 0px;
+		}
+		#Window {
+			opacity: 0.4;
+			-webkit-filter: blur(50px);
+			-moz-filter: blur(50px);
+			-o-filter: blur(50px);
+			-ms-filter: blur(50px);
+			filter: blur(50px);
+			fill: rgba(237,237,237,1);
+		}
+		.Window {
+			position: absolute;
+			overflow: visible;
+			width: 1032px;
+			height: 852px;
+			left: 757px;
+			top: 114px;
+		}
+		#RoadTrip_Logo {
+			opacity: 1;
+			position: absolute;
+			width: 513.238px;
+			height: 441.931px;
+			left: 50px;
+			top: 50px;
+			overflow: visible;
+		}
+		#Satelogic_Logo {
+			opacity: 1;
+			position: absolute;
+			width: 212.821px;
+			height: 32.556px;
+			left: 300.417px;
+			top: 409.375px;
+			overflow: visible;
+		}
+		#Grupo_1 {
+			opacity: 1;
+			position: absolute;
+			width: 212.821px;
+			height: 32.556px;
+			left: 0px;
+			top: 0px;
+			overflow: visible;
+		}
+		#Grupo_3 {
+			opacity: 1;
+			position: absolute;
+			width: 255.475px;
+			height: 255.454px;
+			left: 88.061px;
+			top: 0px;
+			overflow: visible;
+		}
+		#Trazado_1 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_1 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 58.341px;
+			left: 58.362px;
+			width: 197.113px;
+			height: 197.113px;
+		}
+		#Trazado_2 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_2 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 81.45px;
+			height: 81.428px;
+		}
+		#Grupo_5 {
+			opacity: 1;
+			position: absolute;
+			width: 246.226px;
+			height: 246.227px;
+			left: 93.613px;
+			top: 5.531px;
+			overflow: visible;
+		}
+		#Trazado_3 {
+			opacity: 1;
+			fill: rgba(34,32,32,1);
+		}
+		.Trazado_3 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 58.969px;
+			left: 58.969px;
+			width: 184.793px;
+			height: 184.794px;
+		}
+		#Trazado_4 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_4 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 72.909px;
+			left: 72.829px;
+			width: 157.075px;
+			height: 156.994px;
+		}
+		#Trazado_5 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_5 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 72.909px;
+			left: 72.829px;
+			width: 157.075px;
+			height: 156.994px;
+		}
+		#Trazado_6 {
+			opacity: 1;
+			fill: rgba(60,190,227,1);
+		}
+		.Trazado_6 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 56.505px;
+			left: 56.505px;
+			width: 189.721px;
+			height: 189.721px;
+		}
+		#Trazado_7 {
+			opacity: 1;
+			fill: rgba(60,190,227,1);
+		}
+		.Trazado_7 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 93.464px;
+			left: 93.464px;
+			width: 115.804px;
+			height: 115.804px;
+		}
+		#Grupo_4 {
+			opacity: 1;
+			position: absolute;
+			width: 68.978px;
+			height: 68.978px;
+			left: 0px;
+			top: 0px;
+			overflow: visible;
+		}
+		#Trazado_8 {
+			opacity: 1;
+			fill: rgba(0,167,213,1);
+		}
+		.Trazado_8 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 9.408px;
+			left: 0.628px;
+			width: 67.581px;
+			height: 58.801px;
+		}
+		#Trazado_9 {
+			opacity: 1;
+			fill: rgba(60,190,227,1);
+		}
+		.Trazado_9 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 0.628px;
+			left: 9.408px;
+			width: 58.801px;
+			height: 67.581px;
+		}
+		#Trazado_10 {
+			opacity: 1;
+			fill: url(#LinearGradientFill1);
+		}
+		.Trazado_10 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			width: 68.978px;
+			height: 68.978px;
+		}
+		#Grupo_6 {
+			opacity: 1;
+			position: absolute;
+			width: 507.792px;
+			height: 128.616px;
+			left: 0px;
+			top: 275.782px;
+			overflow: visible;
+		}
+		#Trazado_11 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_11 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 6.274px;
+			left: 0px;
+			width: 63.654px;
+			height: 92.541px;
+		}
+		#Trazado_12 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_12 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 36.075px;
+			left: 74.501px;
+			width: 65.354px;
+			height: 64.308px;
+		}
+		#Trazado_13 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_13 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 36.075px;
+			left: 152.141px;
+			width: 53.59px;
+			height: 64.308px;
+		}
+		#Trazado_14 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_14 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 0px;
+			left: 219.978px;
+			width: 64.57px;
+			height: 100.383px;
+		}
+		#Trazado_15 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_15 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 6.274px;
+			left: 295.134px;
+			width: 72.151px;
+			height: 92.541px;
+		}
+		#Trazado_16 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_16 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 36.075px;
+			left: 365.847px;
+			width: 34.768px;
+			height: 62.74px;
+		}
+		#Trazado_17 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_17 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 6.274px;
+			left: 410.939px;
+			width: 14.9px;
+			height: 92.541px;
+		}
+		#Trazado_18 {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Trazado_18 {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 36.075px;
+			left: 443.222px;
+			width: 64.569px;
+			height: 92.542px;
+		}
+		#Car_Icon {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Car_Icon {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 583px;
+			left: 84px;
+			width: 195.201px;
+			height: 60px;
+		}
+		#Road_Icon {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+			stroke: rgba(0, 0, 0, 0);
+			stroke-width: 1px;
+			stroke-linejoin: miter;
+			stroke-linecap: butt;
+			stroke-miterlimit: 4;
+			shape-rendering: auto;
+		}
+		.Road_Icon {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 547.766px;
+			left: 365.594px;
+			width: 159.012px;
+			height: 113.923px;
+		}
+		#Images_Icon {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+			stroke: rgba(0, 0, 0, 0);
+			stroke-width: 1px;
+			stroke-linejoin: miter;
+			stroke-linecap: butt;
+			stroke-miterlimit: 4;
+			shape-rendering: auto;
+		}
+		.Images_Icon {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 762px;
+			left: 234px;
+			width: 191px;
+			height: 191px;
+		}
+		#Car_Detection_Text {
+			opacity: 1;
+			position: absolute;
+			left: 75px;
+			top: 680px;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+			width: 209px;
+			height: 45px;
+			line-height: 594px;
+			margin-top: -280.5px;
+			text-align: center;
+			font-family: Avenir, Futura;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 33px;
+			color: rgba(255,255,255,1);
+		}
+		#Upload_Images_Text {
+			opacity: 1;
+			position: absolute;
+			left: 220px;
+			top: 988px;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+			width: 225px;
+			white-space: nowrap;
+			line-height: 594px;
+			margin-top: -280.5px;
+			text-align: center;
+			font-family: Avenir, Futura;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 33px;
+			color: rgba(255,255,255,1);
+		}
+		#Road_Detection_Text {
+			opacity: 1;
+			position: absolute;
+			left: 332px;
+			top: 680px;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			overflow: visible;
+			width: 233px;
+			white-space: nowrap;
+			line-height: 594px;
+			margin-top: -280.5px;
+			text-align: center;
+			font-family: Avenir, Futura;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 33px;
+			color: rgba(255,255,255,1);
+		}
+		#Add {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Add {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 809.236px;
+			left: 1278.224px;
+			width: 370.17px;
+			height: 95.528px;
+		}
+		#files {
+			opacity: 1;
+			position: absolute;
+			left: 837px;
+			top: 184px;
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			width: 746px;
+			height: 453px;
+			line-height: 43px;
+			margin-top: -5px;
+			text-align: left;
+			font-family: Avenir, Futura;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 33px;
+			color: rgba(255,255,255,1);
+		}
+		#Close {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Close {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 155.287px;
+			left: 1667.129px;
+			width: 80.56px;
+			height: 80.561px;
+		}
+		#Select_Files {
+			opacity: 1;
+			fill: rgba(255,255,255,1);
+		}
+		.Select_Files {
+			transform: matrix(1,0,0,1,0,0);
+			overflow: visible;
+			position: absolute;
+			top: 809.236px;
+			left: 897.606px;
+			width: 370.169px;
+			height: 95.528px;
+		}
+		textarea, .line-input {
+	  	outline: none;
+			resize: none;
+			border: 0px;
+			background-color: transparent;
+			font-family: inherit;
+	   	font-size: inherit;
+			color: inherit;
+			height: 37px;
+		}
+	</style>
 </head>
 <div>
 <div id="SelectFiles">

@@ -979,6 +979,12 @@ def cli(cmmd):
 
 	return f.getvalue()
 
+html_headers = open("site/headers.html", "r", encoding='utf-8').read()
+
+
+def load_html(path):
+	return open(path, "r", encoding='utf-8').read().replace("REPLACE_HEADERS", html_headers)
+
 app = Flask(__name__)
 Mobility(app)
 #Talisman(app, content_security_policy=None)
@@ -987,8 +993,8 @@ Mobility(app)
 #Web Interface main endpoint
 def index():
 	if request.MOBILE:
-		return open("site/mobile/index.html", "r", encoding='utf-8').read()
-	return open("site/index.html", "r", encoding='utf-8').read()
+		return load_html("site/mobile/index.html")
+	return load_html("site/index.html")
 
 UPLOAD_FOLDER = 'images'
 ALLOWED_EXTENSIONS = set(['csv', 'png', 'jpg', 'jpeg'])
@@ -1009,7 +1015,7 @@ def favicon():
 @app.route('/upload', methods=['GET', 'POST'])
 #Web Interface upload files
 def upload_file():
-	html = open("site/SelectFiles.html", "r", encoding='utf-8').read()
+	html = load_html("site/SelectFiles.html")
 	if request.method == 'POST':
 		try:
 			if 'file' not in request.files:
@@ -1061,7 +1067,7 @@ def done():
 @app.route('/terminal/')
 #Web CLI
 def interface():
-	html = open("site/CLI.html", "r", encoding='utf-8').read()
+	html = load_html("site/CLI.html")
 	cmmd = None
 
 	try:
@@ -1123,9 +1129,9 @@ def interface():
 #Web Interface display road detection
 def roads():
 	if request.MOBILE:
-		return open("site/mobile/roads.html", "r", encoding='utf-8').read()
+		return load_html("site/mobile/roads.html")
 	if path.exists("maps/map.svg"):
-		html = open("site/Roads.html", "r", encoding='utf-8').read()
+		html = load_html("site/Roads.html")
 		copyfile('maps/map.svg', 'static/map.svg')
 		return html
 	else:
@@ -1136,8 +1142,8 @@ def roads():
 #Web Interface display car detection
 def cars():
 	if request.MOBILE:
-		return open("site/mobile/cars.html", "r", encoding='utf-8').read()
-	html = open("site/Cars.html", "r", encoding='utf-8').read()
+		return load_html("site/mobile/cars.html")
+	html = load_html("site/Cars.html")
 	results = carResults()
 	html = html.split("<p id='car_results'>{c}")[0] + "<p id='car_results'>" + str(results) + html.split("<p id='car_results'>{c}")[1]
 	return html
@@ -1146,8 +1152,8 @@ def cars():
 def server():
 	#Server
 	port = int(os.environ.get("PORT", 5000))
-	app.run(host='0.0.0.0',port=port)
-	#WSGIServer(('', port), app).serve_forever()
+	#app.run(host='0.0.0.0',port=port)
+	WSGIServer(('', port), app).serve_forever()
 
 #Threading for server instance
 def keep_alive():  
