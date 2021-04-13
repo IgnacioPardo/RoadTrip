@@ -2,13 +2,14 @@
 
 """
 RoadTrip
-Roads & Car Detection
+Roads & Cars Detection
 """
 
 # Dependency: File management
 
 import os
 import sys
+from termcolor import colored, cprint
 
 """ add custom modules to PYTHONPATH """
 where_am_i = os.path.dirname(os.path.abspath(__file__))
@@ -611,7 +612,7 @@ def loadImages(path, amt = None, correction=False, whereFrom='images/image-{}.jp
 
 	print('[INFO] Loading images...')
 	for i in range(cant):
-		if whereFrom is not 'images/image-{}.jpg':
+		if whereFrom != 'images/image-{}.jpg':
 			image_filename = whereFrom.format(i).replace('\u2069', '')
 		else:
 			image_filename = whereFrom.format(i)
@@ -1056,7 +1057,7 @@ def run():
 			yield '<script type="text/javascript">window.location.replace("/done");</script>'
 		except:
 			pass
-		return ''
+		return
 	return Response(process())
 
 @app.route("/done/")
@@ -1098,7 +1099,7 @@ def interface():
 		consoleOutput = cli(cmd)
 		yield '<p id="cmmds">' + consoleOutput.replace('\n', '</p><p id="cmmds">') + '</p><br><p id="cmmds">Satellogic:~ RoadTrip$</p>'
 		yield second
-		return ''
+		return
 
 	def new():
 		first = html.split('<span>{c}')[0] + '<span>'
@@ -1117,7 +1118,7 @@ def interface():
 				</style>'''
 		yield '<br><p id="cmmds">Satellogic:~ RoadTrip$</p>'
 		yield second
-		return ''
+		return
 
 
 	if cmmd is None:
@@ -1147,19 +1148,23 @@ def cars():
 	html = html.split("<p id='car_results'>{c}")[0] + "<p id='car_results'>" + str(results) + html.split("<p id='car_results'>{c}")[1]
 	return html
 
+port = int(os.environ.get("PORT", 5000))
 #Launch WSGI server for Web Interface
 def server():
-	port = int(os.environ.get("PORT", 5000))
 	WSGIServer(('', port), app).serve_forever()
 
 #Threading for server instance
 def keep_alive():  
 	t = Thread(target=server)
 	t.start()
+	cprint("Running at ", 'green', end='')
+	cprint("127.0.0.1:"+str(port), 'cyan')
 
 if __name__ == '__main__':
 	argv = sys.argv[1:]
-
+	cmd('clear')
+	cprint("RoadTrip", 'white', 'on_grey')
+	cprint("Roads & Cars Detection", 'white', 'on_grey')
 	if len(argv) == 0:
 		keep_alive()
 	else:

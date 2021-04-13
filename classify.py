@@ -8,8 +8,8 @@ try:
 	from tensorflow_core.keras.preprocessing.image import img_to_array
 	from tensorflow_core.keras.models import load_model
 except:
-	from python_modules.tensorflow_core.keras.preprocessing.image import img_to_array
-	from python_modules.tensorflow_core.keras.models import load_model
+	from tensorflow.keras.preprocessing.image import img_to_array
+	from tensorflow.keras.models import load_model
 
 import numpy as np
 import argparse
@@ -54,7 +54,7 @@ def predictRoads(full = False):
 
 	# cargar la red neuronal entrenada
 	print("[INFO] loading network...")
-	model = load_model("street.model")
+	model = load_model("models/street.model")
 
 	# clasifical las imagenes de entrada
 	print("[INFO] classifying images...")

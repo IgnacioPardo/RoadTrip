@@ -12,18 +12,13 @@ sys.path.insert(0, where_am_i+"/python_modules")
 try:
 	from tensorflow_core.keras.models import load_model
 except:
-	from python_modules.tensorflow_core.keras.models import load_model
+	from tensorflow.keras.models import load_model
 	
 from argparse import ArgumentParser
 
 threshold = 0.2
-try:
-	model = load_model(os.path.join("models", "model_1"))
-except:
-	try:
-		model = load_model(os.path.join("Car_Detection", "models", "model_1"))	
-	except:
-		model = load_model(os.path.join("..","Road_Analisis","Car_Detection","models", "model_1"))
+model = load_model("models/cars.model")
+
 
 def count_cars(image, **kwargs):
 
