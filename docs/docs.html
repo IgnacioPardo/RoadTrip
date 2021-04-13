@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RoadTrip</title>
+		<style>
+			body{
+				font-family: Courier New;
+				background: rgb(30, 31, 27);
+			}
+			.title{
+				color:white;
+				font-size: 50px;
+				margin:30px;
+				margin-top:60px;
+			}
+			.list{
+				margin:30px;
+			}
+			.class{
+				margin:10px;
+			}
+			.object{
+				font-size: 30px;
+				color:rgb(166, 214, 61);
+				color:rgb(112, 206, 230);
+				margin-top:60px;
+			}
+			.function{
+				font-size: 20px;
+				margin:20px;
+				display: inline;
+				color:rgb(166, 214, 61);
+			}
+			.description{
+				font-size:17px;
+				color: darkgray;
+				margin:15px;
+				margin-left: 20px;
+				margin-bottom:30px;
+			}
+			.object_description{
+				font-size:16px;
+				color: darkgray;
+				margin-top:10px;
+				margin-bottom:40px;
+			}
+			.param{
+				color: rgb(236, 134, 55);
+				display: inline;
+			}
+			.white{
+				color: white;
+				display: inline;
+			}
+			.footer{
+				margin: 30px;
+				margin-top: 100px;
+			}
+			.subheader{
+				margin: 30px;
+				margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="title">RoadTrip</div>
+		<div class="subheader">
+			<a href="https://github.com/IgnacioPardo/RoadTrip">
+				<svg class="" style="fill: white;" height="50" viewBox="0 0 16 16" version="1.1" width="50" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+			</a>
+		</div><div class="list"><div class="class"><div class="function">carResults<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Loads Car Results from Car Detection Model output</div><div class="function">openCarPredictions<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#CLI: open car_predictions.csv</div><div class="function">openMap<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#CLI: open stitched-images.png</div><div class="function">openRoadMap<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#CLI: open map.svg'</div><div class="function">openRoadPremap<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#CLI: open premap.bmp</div><div class="function">runSh<p class="white">(</p><p class="param">path</p><p class="white">)</p></div><div class="description">#CLI: run shell script form path</div><div class="function">sqrt<p class="white">(</p><p class="param">n</p><p class="white">)</p></div><div class="description">#Square Root</div><div class="function">createDirectories<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Create missing directories for project</div><div class="function">getMirrored<p class="white">(</p><p class="param">x = None<p class="white">, </p><p class="param">y = None</p><p class="white">)</p></div><div class="description">#Mirror matrix</div><div class="function">loadLocations<p class="white">(</p><p class="param">path</p><p class="white">)</p></div><div class="description">#Load georefernces from csv file. csv format: image, latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner</div><div class="function">dictGeoreferences<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Add georefernces to dictionary</div><div class="function">calcRes<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Calculate resolution in meters from georefernces</div><div class="function">randomPair<p class="white">(</p><p class="param">latRange<p class="white">, </p><p class="param">lonRange</p><p class="white">)</p></div><div class="description">#Random lat lon pair.</div><div class="function">offset<p class="white">(</p><p class="param">lat<p class="white">, </p><p class="param">lon<p class="white">, </p><p class="param">offset</p><p class="white">)</p></div><div class="description">#Add earths radius as offset in meters to georefences</div><div class="function">coordinatesToMeters<p class="white">(</p><p class="param">point<p class="white">, </p><p class="param">point2</p><p class="white">)</p></div><div class="description">#Distance bewtween lat lon coordinates in meters.</div><div class="function">coordinatesToPixels<p class="white">(</p><p class="param">coordinates</p><p class="white">)</p></div><div class="description">#Distance bewtween lat lon coordinates in pixels.</div><div class="function">outerPoints<p class="white">(</p><p class="param">path</p><p class="white">)</p></div><div class="description">#Order coorners out of 4 points</div><div class="function">randomRectangle<p class="white">(</p><p class="param">latRange<p class="white">, </p><p class="param">lonRange<p class="white">, </p><p class="param">size</p><p class="white">)</p></div><div class="description">#Generate random rect</div><div class="function">tileReferences<p class="white">(</p><p class="param">path</p><p class="white">)</p></div><div class="description">#Load tile georefernces</div><div class="function">dictTileReferences<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Add tile georefernces to dictionary</div><div class="object">ConvexHull(object)  </div><div class="object_description">#Convex Hull</div><div class="description">#Convex Hull</div>    <div class="function">add<p class="white">(</p><p class="param">point</p><p class="white">)</p></div><div class="description">    #Add points to convex hull</div>    <div class="function">_get_orientation<p class="white">(</p><p class="param">origin<p class="white">, </p><p class="param">p1<p class="white">, </p><p class="param">p2</p><p class="white">)</p></div><div class="description">    #Convex hull orientation</div>    <div class="function">compute_hull<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">    #Computes convex hull</div>    <div class="function">get_hull_points<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">    #Returns Convex Hull points</div>    <div class="function">display<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">    #Matplot lib display o Convex Hull Points</div><div class="function">giftWrappedBoardSize<p class="white">(</p><p class="param">georeferencesPath</p><p class="white">)</p>  </div><div class="description">#Get size of map out of georefences</div><div class="function">coordConvexHull<p class="white">(</p><p class="param">georeferencesPath</p><p class="white">)</p></div><div class="description">#Convex Hull fromg georeferences file</div><div class="function">bmp_to_svg<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">pathOut</p><p class="white">)</p></div><div class="description">#CLI: potrace bitmap to vector graphics</div><div class="function">sekeletonize<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">pathOut</p><p class="white">)</p></div><div class="description">#Lines out of street detection output</div><div class="function">loadTiles<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">amt = None<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Load Tile images from path</div><div class="function">loadImages<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">amt = None<p class="white">, </p><p class="param">correction=False<p class="white">, </p><p class="param">whereFrom='images/image-{}.jpg'</p><p class="white">)</p></div><div class="description">#Load Satelite images from path</div><div class="function">createBoard<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">res</p><p class="white">)</p></div><div class="description">#Create Empty Map size of all georefences</div><div class="function">createBoardPerfectSquares<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Empty Square Map</div><div class="function">fitTiles<p class="white">(</p><p class="param">board<p class="white">, </p><p class="param">tiles<p class="white">, </p><p class="param">res</p><p class="white">)</p></div><div class="description">#Fit tiles to empty map</div><div class="function">stitchImages<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">res<p class="white">, </p><p class="param">amt = None<p class="white">, </p><p class="param">correction=False<p class="white">, </p><p class="param">where='images/image-{}.jpg'<p class="white">, </p><p class="param">outputPath='files/stitched-images.png'</p><p class="white">)</p></div><div class="description">#Stitch images toghether out of georefences</div><div class="function">stitchMasks<p class="white">(</p><p class="param">path<p class="white">, </p><p class="param">res<p class="white">, </p><p class="param">amt = None<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Stitched road detection output as masked map</div><div class="function">scale<p class="white">(</p><p class="param">img<p class="white">, </p><p class="param">fullSize1<p class="white">, </p><p class="param">fullSize2<p class="white">, </p><p class="param">roadSize</p><p class="white">)</p></div><div class="description">#Scale image</div><div class="function">multiple<p class="white">(</p><p class="param">georeferencesPath<p class="white">, </p><p class="param">res<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Multiple satelital images</div><div class="function">single<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Singe satelite image</div><div class="function">separated<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Multiple satelite images that do not compose a map</div><div class="function">multipleNoSkeleton<p class="white">(</p><p class="param">georeferencesPath<p class="white">, </p><p class="param">res<p class="white">, </p><p class="param">correction=False</p><p class="white">)</p></div><div class="description">#Multiple road detection from satelite images</div><div class="function">singleNoSkeleton<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Single road detection from satelite image</div><div class="function">separatedNoSkeleton<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Multiple road detection satelite images that do not compose a map</div><div class="function">executeRoutine<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Full standardize routine: creates directories, loads georeferences and calculates resolution, stitches images, detects roads, generates a single map out of all satellital images, detects cars on masked map, outputs map depicting both road detecion and car detection.</div><div class="function">cli<p class="white">(</p><p class="param">cmmd</p><p class="white">)</p></div><div class="description">#CLI input</div><div class="function">index<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface main endpoint</div><div class="function">allowed_file<p class="white">(</p><p class="param">filename</p><p class="white">)</p></div><div class="description">#Web Interface check for file upload</div><div class="function">favicon<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface favicon</div><div class="function">upload_file<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface upload files</div><div class="function">delete_file<p class="white">(</p><p class="param">file</p><p class="white">)</p></div><div class="description">#Web Interface delete file</div><div class="function">run<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface Run main routine with executeRoutine()</div><div class="function">done<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Retun results</div><div class="function">interface<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web CLI</div><div class="function">roads<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface display road detection</div><div class="function">cars<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Web Interface display car detection</div><div class="function">server<p class="white">(</p><p class="param"></p><p class="white">)</p></div><div class="description">#Launch WSGI server for Web Interface</div><div class="function">keep_alive<p class="white">(</p><p class="param"></p><p class="white">)</p>  </div><div class="description">#Threading for server instance</div></div></div>
+<div class="footer">
+<a href="https://github.com/IgnacioPardo/RoadTrip">
+<svg class="" style="fill: white;" height="50" viewBox="0 0 16 16" version="1.1" width="50" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+</a>
+</div></body>
+</html>

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
-#Roads and Car Detection
+"""
+RoadTrip
+Roads & Car Detection
+"""
 
-#File management
+# Dependency: File management
 
 import os
 import sys
@@ -19,7 +22,7 @@ from skimage import data_dir
 from contextlib import redirect_stdout
 import io as ioo
 
-#Server
+# Dependency: Server
 
 from flask import Flask, request, redirect, url_for, flash, Response, send_from_directory
 from flask_mobility import Mobility
@@ -27,30 +30,30 @@ from flask_talisman import Talisman
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
-#Procceses
+# Dependency: Procceses
 
 from threading import Thread
 from tqdm import tqdm
 
 
-#Neural Nets
+# Dependency: Neural Nets
 
 from classify import *
 from count import *
 
-#Images and arrays
+# Dependency: Images and arrays
 
 from PIL import Image
 import numpy as np
 
 
-#SciKit
+# Dependency: SciKit
 
 from skimage.morphology import skeletonize_3d
 from skimage.data import load
 from skimage import io
 
-#Math
+# Dependency: Math
 
 from collections import namedtuple  
 import matplotlib.pyplot as plt
@@ -143,9 +146,6 @@ def getMirrored(x = None, y = None):
 
 	arr = np.zeros((x,y))
 
-	#xSize = arr.shape[0]
-	#ySize = arr.shape[1]
-
 	xSize, ySize = arr.shape[0], arr.shape[1]
 
 	for i in range(xSize*ySize):
@@ -222,31 +222,31 @@ def randomPair(latRange, lonRange):
 
 	return lat, lon
 
-#Add earths radius as offset to georefences
+#Add earths radius as offset in meters to georefences
 def offset(lat, lon, offset):
-	 #Earth's radius, sphere
+	"""Earth's radius, sphere"""
 
-	 lat = float(lat)
-	 lon = float(lon)
+	lat = float(lat)
+	lon = float(lon)
 
-	 R = 6378137
+	R = 6378137
 
-	 #offsets in meters
+	"""offsets in meters"""
 
-	 dn = offset
-	 de = offset
+	dn = offset
+	de = offset
 
-	 #Coordinate offsets in radians
+	"""Coordinate offsets in radians"""
 
-	 dLat = dn/R
-	 dLon = de/(R*math.cos(math.pi*lat/180))
+	dLat = dn/R
+	dLon = de/(R*math.cos(math.pi*lat/180))
 
-	 #OffsetPosition, decimal degrees
+	"""OffsetPosition, decimal degrees"""
 
-	 latO = round(lat + dLat * 180/math.pi, 8)
-	 lonO = round(lon + dLon * 180/math.pi, 8)
+	latO = round(lat + dLat * 180/math.pi, 8)
+	lonO = round(lon + dLon * 180/math.pi, 8)
 
-	 return latO, lonO
+	return latO, lonO
 
 #Distance bewtween lat lon coordinates in meters.
 def coordinatesToMeters(point, point2):
@@ -256,7 +256,7 @@ def coordinatesToMeters(point, point2):
 	lat2 = radians(float(point2[1]))
 	lon2 = radians(float(point2[0]))
 
-	#approximate radius of earth in km
+	"""approximate radius of earth in km"""
 
 	R = 6378.137
 
@@ -288,7 +288,7 @@ def outerPoints(path):
 
 	coordinates = loadLocations(path)
 
-	#latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
+	"""latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner"""
 
 	maxLatTop = max([coord[0] for coord in coordinates])
 	minLonTop = min([coord[1] for coord in coordinates])
@@ -316,7 +316,7 @@ def randomRectangle(latRange, lonRange, size):
 #Load tile georefernces
 def tileReferences(path):
 
-	#latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
+	"""latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner"""
 
 	refs_0_0, full_Corner2, full_Corner3, full_Corner4 = outerPoints(path)
 
@@ -356,10 +356,10 @@ def dictTileReferences(path, correction=False):
 
 	boardMinLon, boardMaxLat = refs_0_0[0], refs_0_0[1]
 
-	# image, latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
-
-	#latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
-
+	"""
+		image, latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
+		latTopLeftCorner, longTopLeftCorner, latDownRightCorner, longDownRightCorner
+	"""
 	refs = dictGeoreferences(path, correction)
 
 	dictionary = {}
@@ -413,7 +413,7 @@ class ConvexHull(object):
         
         points = self._points
 
-        # get leftmost point
+        """get leftmost point"""
 
         start = points[0]
         min_x = start.x
@@ -428,7 +428,7 @@ class ConvexHull(object):
         far_point = None
         while far_point is not start:
 
-            # get the first point (initial max) to use to compare with others
+            """get the first point (initial max) to use to compare with others"""
 
             p1 = None
             for p in points:
@@ -441,7 +441,7 @@ class ConvexHull(object):
             far_point = p1
 
             for p2 in points:
-                # ensure we aren't comparing to self or pivot point
+                """ensure we aren't comparing to self or pivot point"""
 
                 if p2 is point or p2 is p1:
                     continue
@@ -462,13 +462,13 @@ class ConvexHull(object):
 
     #Matplot lib display o Convex Hull Points
     def display(self):
-        # all points
+        """all points"""
 
         x = [p.x for p in self._points]
         y = [p.y for p in self._points]
         plt.plot(x, y, marker='D', linestyle='None')
 
-        # hull points
+        """hull points"""
 
         hx = [p.x for p in self._hull_points]
         hy = [p.y for p in self._hull_points]
@@ -511,7 +511,10 @@ def giftWrappedBoardSize(georeferencesPath):
 
     H = coordinatesToMeters(point_1, point_4)
 
-    #ch.display() optional to display convex hull
+    """
+    ch.display() 
+    optional to display convex hull
+    """
 
     return H, W
 
@@ -679,7 +682,7 @@ def stitchMasks(path, res, amt = None, correction=False):
 	images = loadTiles(path, amt, correction)
 	board = createBoard(path, res)
 
-	#board =  createBoardPerfectSquares() as alternative to createBoard(path, res)
+	"""board = createBoardPerfectSquares() as alternative to createBoard(path, res)"""
 
 	full = fitTiles(board, images, res)
 
@@ -721,7 +724,7 @@ def predictionDepiction(t, roadSize = 32):
 #Multiple satelital images
 def multiple(georeferencesPath, res, correction=False):
 
-	#Neural Net Predicts roads from /images and saves to /predictions
+	"""Neural Net Predicts roads from /images and saves to /predictions"""
 
 	print('[INFO] Enlarging Predictions...')
 
@@ -729,16 +732,16 @@ def multiple(georeferencesPath, res, correction=False):
 
 	for i in tqdm(range(cant)):
 		predictionDepiction(i) 
-	#visualization.py Creates 'tiles/tile-i.bmp' from 'predictions/prediction-i.png'
+	"""visualization.py Creates 'tiles/tile-i.bmp' from 'predictions/prediction-i.png'"""
 
 	tiles = loadTiles(georeferencesPath, correction=correction) 
-	#stitching.py Returns list of PIL.Images from 'tiles/'' files and appends locations to each from '/dataset/georeferences.csv'
+	"""stitching.py Returns list of PIL.Images from 'tiles/'' files and appends locations to each from '/dataset/georeferences.csv'"""
 
 	board = createBoard(georeferencesPath, res) 
-	#stitching.py Returns PIl.Image of dimentions extracted from '/dataset/georeferences.csv' outmosts latitude and longitud converted to meters (Res of 1m^2/pix)
+	"""stitching.py Returns PIl.Image of dimentions extracted from '/dataset/georeferences.csv' outmosts latitude and longitud converted to meters (Res of 1m^2/pix)"""
 
 	premap = fitTiles(board, tiles, res) 
-	#stitching.py Pastes tiles into board with lat/long coordinates as reference
+	"""stitching.py Pastes tiles into board with lat/long coordinates as reference"""
 
 	premap.save('files/premap.bmp')
 	
@@ -746,16 +749,16 @@ def multiple(georeferencesPath, res, correction=False):
 
 	print('[INFO] Skeletonizing...')
 	sekeletonize('files/premap.bmp', 'skeletons/map.bmp') 
-	#skeletonization.py Creates line image out of original squares.
+	"""skeletonization.py Creates line image out of original squares."""
 
 	print('[INFO] Vectorizing...')
 	bmp_to_svg('skeletons/map.bmp', 'maps/map.svg') 
-	#vectorization.py Vectorizes line image.
+	"""vectorization.py Vectorizes line image."""
 
 #Singe satelite image
 def single():
 
-	#Neural Net Predicts roads from /images and saves to /predictions
+	"""Neural Net Predicts roads from /images and saves to /predictions"""
 
 	predictionDepiction(0)
 
@@ -764,15 +767,14 @@ def single():
 	premap.save(data_dir+'/files/premap.bmp')
 
 	sekeletonize('files/premap.bmp', 'skeletons/map.bmp') 
-	#skeletonization.py Creates line image out of original squares.
+	"""skeletonization.py Creates line image out of original squares."""
 
 	bmp_to_svg('skeletons/map.bmp', 'maps/map.svg')
 
 #Multiple satelite images that do not compose a map
 def separated():
 
-	#Neural Net Predicts roads from /images and saves to /predictions
-	
+	"""Neural Net Predicts roads from /images and saves to /predictions"""	
 	
 	print('[INFO] Enlarging Predictions')
 	cant = len(list(filter(lambda s: s.endswith(".bmp"), os.listdir("predictions/"))))
@@ -788,14 +790,14 @@ def separated():
 		premap.save(data_dir+'/files/premap-{}.bmp'.format(i))
 
 		sekeletonize('files/premap-{}.bmp'.format(i), 'skeletons/map-{}.bmp'.format(i)) 
-		#skeletonization.py Creates line image out of original squares.
+		"""skeletonization.py Creates line image out of original squares."""
 
 		bmp_to_svg('skeletons/map-{}.bmp'.format(i), 'maps/map-{}.svg'.format(i))
 
 #Multiple road detection from satelite images
 def multipleNoSkeleton(georeferencesPath, res, correction=False):
 
-	#Neural Net Predicts roads from /images and saves to /predictions
+	"""Neural Net Predicts roads from /images and saves to /predictions"""
 
 	print('[INFO] Enlarging Predictions...')
 
@@ -817,7 +819,7 @@ def multipleNoSkeleton(georeferencesPath, res, correction=False):
 #Single road detection from satelite image
 def singleNoSkeleton():
 
-	#Neural Net Predicts roads from /images and saves to /predictions
+	"""Neural Net Predicts roads from /images and saves to /predictions"""
 
 	predictionDepiction(0)
 
@@ -833,7 +835,7 @@ def singleNoSkeleton():
 #Multiple road detection satelite images that do not compose a map
 def separatedNoSkeleton():
 
-	#Neural Net Predicts roads from /images and saves to /predictions
+	"""Neural Net Predicts roads from /images and saves to /predictions"""
 
 	print('[INFO] Enlarging Predictions...')
 	for i in tqdm(range(len(os.listdir(os.getcwd()+'/predictions/')))):
@@ -877,7 +879,6 @@ def executeRoutine():
 	predictCars()
 
 	carResults() 
-	#carResults() Returns Car Prediction
 	
 	stitchImages(georeferencesPath, res, correction=corrections, where='Car_Detection⁩/car_predictions⁩/'+'cars_image-{}.jpg', outputPath='static/carPrediction.jpg')
 
@@ -987,7 +988,7 @@ def load_html(path):
 
 app = Flask(__name__)
 Mobility(app)
-#Talisman(app, content_security_policy=None)
+"""Talisman(app, content_security_policy=None)"""
 
 @app.route("/")
 #Web Interface main endpoint
@@ -1022,8 +1023,7 @@ def upload_file():
 				flash('No file part')
 				return redirect(request.url)
 			file = request.files['file']
-	        # if user does not select file, browser submits an empty part without filename
-
+	        
 			if file.filename == '':
 				flash('No selected file')
 				return redirect(request.url)
@@ -1135,7 +1135,6 @@ def roads():
 		copyfile('maps/map.svg', 'static/map.svg')
 		return html
 	else:
-		#Handle error
 		return "maps/map.svg not found"
 
 @app.route("/cars")
@@ -1150,9 +1149,7 @@ def cars():
 
 #Launch WSGI server for Web Interface
 def server():
-	#Server
 	port = int(os.environ.get("PORT", 5000))
-	#app.run(host='0.0.0.0',port=port)
 	WSGIServer(('', port), app).serve_forever()
 
 #Threading for server instance
@@ -1161,9 +1158,6 @@ def keep_alive():
 	t.start()
 
 if __name__ == '__main__':
-	#keep_alive()
-	#Build electron app -e argument
-
 	argv = sys.argv[1:]
 
 	if len(argv) == 0:
