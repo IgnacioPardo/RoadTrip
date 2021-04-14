@@ -1172,7 +1172,7 @@ if __name__ == '__main__':
 			keep_alive()
 		if "-e" in argv:
 			keep_alive()
-			os.system("electron .")
+			os.system("./node_modules/.bin/electron .")
 		if "-c" in argv:
 			while True:
 				print(cli(input(">")).replace(" <br>", ""))

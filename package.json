@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "main": "app.js",
   "scripts": {
-    "server": "python main.py",
+    "start": "python main.py",
+    "server": "python main.py -s",
     "app": "python main.py -e"
   },
   "devDependencies": {
-    "electron": "^10.1.0",
+    "electron": "^10.4.3",
     "electron-packager": "^15.1.0"
   },
   "description": "RoadTrip Road and Cars Detection",
@@ -27,5 +28,9 @@
   "repository": {
     "type": "git",
     "url": "https://git.heroku.com/roadtrip-server.git"
+  },
+  "dependencies": {
+    "electron-dev": "^1.0.1",
+    "python-shell": "^3.0.0"
   }
 }

@@ -1,5 +1,4 @@
 const { app, BrowserWindow } = require('electron')
-let {PythonShell} = require('python-shell')
 
 app.commandLine.appendSwitch('ignore-certificate-errors', 'true');
 
@@ -24,12 +23,13 @@ function createWindow () {
   //win.loadFile('index.html')
 
   win.setAspectRatio(16/9);
-  win.loadURL("http://0.0.0.0:8081");
+  win.loadURL("http://0.0.0.0:5000");
   // Open the DevTools.
-  //win.webContents.openDevTools()
+  win.webContents.openDevTools()
 }
 
 function server () {
+  let {PythonShell} = require('python-shell')
   //change scripts to "electron ." on package.json
   PythonShell.run('main.py', null, function (err) {
     if (err) throw err;;
