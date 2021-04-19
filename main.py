@@ -1170,8 +1170,10 @@ if __name__ == '__main__':
 	else:
 		if "-s" in argv:
 			keep_alive()
+			cmd('open http://127.0.0.1:'+str(port))
 		if "-e" in argv:
 			keep_alive()
+			cmd('open http://127.0.0.1:'+str(port))
 			os.system("./node_modules/.bin/electron .")
 		if "-c" in argv:
 			while True:
