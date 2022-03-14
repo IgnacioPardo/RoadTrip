@@ -1,0 +1,52 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: RoadTrip
+message: Please cite this software using these metadata.
+type: software
+authors:
+  - given-names: Ignacio
+    family-names: Pardo
+    email: nacho.ignaciopardo@gmail.com
+    orcid: 'https://orcid.org/0000-0001-8837-8099'
+  - given-names: Tomas
+    family-names: Spognardi
+    email: tomas.spognardi@gmail.com
+  - given-names: Tomislav
+    family-names: Separovick
+    email: tomislavseparovic@gmail.com
+  - given-names: Valeria
+    family-names: Wodka
+    email: valewodka@gmail.com
+abstract: >-
+  Debido a la llamada “democratización del
+  espacio”(1),la humanidad dispone de una gran
+  cantidad deimágenes satelitales de todo el planeta
+  en tiempo real.Estas contienen datos que
+  resultarían valiosos paradiversas aplicaciones,
+  como la fertilidad del suelo enuna granja, el
+  congestionamiento de las calles en unaciudad o
+  hasta la detección temprana de incendiosforestales.
+  La única razón por la cual no aprovechamosesta
+  posibilidad es la falta de métodos eficaces
+  paraanalizarlas. Una alternativa sería extraer
+  lainformación manualmente, resultaría imposible
+  debidoal volumen de la misma. Nuestro proyecto
+  consiste endesarrollar herramientas que procesen
+  estas imágenesautomáticamente con el objetivo de
+  ayudar a mejorarla calidad de vida de la población.
+  Para lograrlo,llegamos a un acuerdo de trabajo
+  conjunto conSatellogic, una compañía argentina que
+  planifica teneruna constelación de 300 satélites
+  que generen un mapade la Tierra en tiempo real.
+  Ellos nos proveen lasimágenes necesarias para
+  entrenar a nuestrosalgoritmos de inteligencia
+  artificial.
+keywords:
+  - Machine Learning
+  - ' Research and Development'
+  - Artificial Intelligence
+  - Satellite Imagery
+  - Tensorflow
+license: MIT
