@@ -14,7 +14,7 @@ authors:
     family-names: Spognardi
     email: tomas.spognardi@gmail.com
   - given-names: Tomislav
-    family-names: Separovick
+    family-names: Separovic
     email: tomislavseparovic@gmail.com
   - given-names: Valeria
     family-names: Wodka
@@ -44,9 +44,9 @@ abstract: >-
   entrenar a nuestrosalgoritmos de inteligencia
   artificial.
 keywords:
-  - Machine Learning
-  - ' Research and Development'
-  - Artificial Intelligence
-  - Satellite Imagery
-  - Tensorflow
+  - 'Machine Learning'
+  - 'Research and Development'
+  - 'Artificial Intelligence'
+  - 'Satellite Imagery'
+  - 'Tensorflow'
 license: MIT
